@@ -2,4 +2,4 @@
 
 > `poetry install`
 > 
-> `python main.py`
+> `poetry run python main.py`
