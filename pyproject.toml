@@ -6,8 +6,8 @@ authors = [
     {name = "Artem Radchenko", email = "b11342093@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.1"
-dependencies = ["flask (>=3.1.2,<4.0.0)"]
+requires-python = ">=3.9"
+dependencies = ["flask (>=3.1.2,<4.0.0)", "requests (>=2.32.5,<3.0.0)"]
 
 [tool.poetry]
 package-mode = false
