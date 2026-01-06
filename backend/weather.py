@@ -27,7 +27,7 @@ def weather():
         }), 400
 
 
-    url = "https://archive-api.open-meteo.com/v1/archive"
+    url = "https://api.open-meteo.com/v1/forecast"
 
     params = {
         "latitude": lat,

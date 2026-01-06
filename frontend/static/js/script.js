@@ -14,7 +14,7 @@ let trackPoints = [];
 let wetWeatherCodes = [];
 let weatherCodeMap = {};
 
-fetch("/static/json/trekking_poles_weather.json")
+fetch("static/json/trekking_poles_weather.json")
   .then(r => r.json())
   .then(codes => {
     wetWeatherCodes = codes;
@@ -205,7 +205,7 @@ fetch('static/route.gpx').then(r => r.text()).then(loadGpxFromText);
 const dateInput = document.getElementById('input-date');
 dateInput.value = new Date().toISOString().split('T')[0];
 
-fetch("/static/json/weather_codes.json")
+fetch("static/json/weather_codes.json")
   .then(r => r.json())
   .then(codes => {
     weatherCodeMap = codes;
