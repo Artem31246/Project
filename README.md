@@ -4,8 +4,6 @@ Javascript-based GPX track viewer
 
 ## Installation and running
 
-> `cd my-app`
-> 
 > `npm start`
 
 ## Usage
