@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Chart,
   LineController,
@@ -15,7 +15,6 @@ Chart.register(LineController, LineElement, PointElement, LinearScale, Title, To
 const ElevationChart = ({ trackPoints }) => {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
-  const [windowSize, setWindowSize] = useState(1000);
 
   const maxDistanceM = trackPoints.length
     ? trackPoints[trackPoints.length - 1].distanceFromStart
@@ -57,7 +56,7 @@ const ElevationChart = ({ trackPoints }) => {
               title: { display: true, text: "Distance", font: { family: "Montserrat", size: 14 } },
               ticks: {
                 font: { family: "Montserrat", size: 12 },
-                stepSize: windowSize,
+                stepSize: maxDistanceM / 20,
                 callback: v => `${Math.round(v/25)*25} m`
               }
             },
@@ -83,24 +82,9 @@ const ElevationChart = ({ trackPoints }) => {
         }
       });
     }
-  }, [trackPoints, maxDistanceM, windowSize]);
-
-  useEffect(() => {
-    if (!chartRef.current || !trackPoints.length) return;
-
-    const chart = chartRef.current;
+  }, [trackPoints, maxDistanceM]);
 
 
-    chart.data.datasets[0].data = trackPoints.map(p => ({
-      x: p.distanceFromStart,
-      y: p.elevation
-    }));
-
-
-    chart.options.scales.x.ticks.stepSize = windowSize;
-
-    chart.update();
-}, [windowSize, trackPoints]);
 
   useEffect(() => {
   if (!chartRef.current || !trackPoints.length) return;
@@ -127,22 +111,9 @@ const ElevationChart = ({ trackPoints }) => {
         <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
       </div>
 
-      <div style={{ padding: "6px 8px" }}>
-        <input
-          type="range"
-          min={100}
-          max={Math.max(50, Math.round(maxDistanceM / 2))}
-          step={100}
-          value={windowSize}
-          disabled={!trackPoints.length}
-          onChange={e => setWindowSize(Number(e.target.value))}
-          style={{ width: "100%" }}
-        />
-        <div style={{ fontFamily: "Montserrat", fontSize: "12px", textAlign: "center" }}>
-          X-axis scale: {windowSize} m per tick
-        </div>
+      
       </div>
-    </div>
+    
   );
 };
 
