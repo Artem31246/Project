@@ -24,7 +24,6 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <button onClick={() => { throw new Error("Test"); }}>Test Error</button>
       <div className="map-section">
         <Map
           gpxFile={gpxFile}
