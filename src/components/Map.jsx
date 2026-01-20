@@ -3,15 +3,13 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import ElevationChart from "./ElevationChart";
 
-
 const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const polylineRef = useRef(null);
   const lastGpxIdRef = useRef(null);
-  const hasFitBoundsRef = useRef(false);
   const [trackPoints, setTrackPoints] = useState([]);
-  
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
@@ -24,15 +22,18 @@ const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
     }).setView([0, 0], 2);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "© OpenStreetMap",
+      attribution: "© OpenStreetMap"
     }).addTo(map);
 
     mapInstanceRef.current = map;
+    setMapReady(true);
   }, []);
 
   useEffect(() => {
+    if (!mapReady) return;
+
     const loadGpx = async (fileOrUrl) => {
-      if (!mapInstanceRef.current) return;
+      if (!mapInstanceRef.current || !fileOrUrl) return;
 
       const gpxId =
         fileOrUrl instanceof File
@@ -42,12 +43,7 @@ const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
       const isNewGpx = lastGpxIdRef.current !== gpxId;
       lastGpxIdRef.current = gpxId;
 
-      if (isNewGpx) {
-        hasFitBoundsRef.current = false;
-      }
-
       let gpxText;
-
       if (fileOrUrl instanceof File) {
         gpxText = await fileOrUrl.text();
       } else {
@@ -111,11 +107,8 @@ const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
 
       polylineRef.current = line;
 
-      if (!hasFitBoundsRef.current) {
-        mapInstanceRef.current.fitBounds(line.getBounds(), {
-          padding: [20, 20]
-        });
-        hasFitBoundsRef.current = true;
+      if (points.length && isNewGpx) {
+        mapInstanceRef.current.fitBounds(line.getBounds(), { padding: [20, 20] });
       }
 
       setTrackPoints(points);
@@ -124,49 +117,49 @@ const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
 
     if (gpxFile) loadGpx(gpxFile);
     else if (defaultGpxUrl) loadGpx(defaultGpxUrl);
-  }, [gpxFile, defaultGpxUrl, onTrackLoad]);
+  }, [mapReady, gpxFile, defaultGpxUrl, onTrackLoad]);
 
-return (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      height: "100%",
-      gap: "10px",
-      minHeight: 0,
-      padding: "0px"
-    }}
-  >
+  return (
     <div
-      ref={mapRef}
       style={{
-        flex: 8,        
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        gap: "10px",
         minHeight: 0,
-        border: "1px solid #444",
         padding: "0px"
       }}
-    />
-
-    {trackPoints.length > 0 && (
+    >
       <div
+        ref={mapRef}
         style={{
-          flex: 2.5,      
+          flex: 8,
           minHeight: 0,
-          border: "1px solid #444",
+          borderRadius: "10px",
+          border: "5px solid #252B37",
           padding: "0px",
-          width: "100%"
+          background: "#252B37",
+          boxShadow: "4px 4px 10px rgba(0,0,0,0.35)",
+          outline: "none"
         }}
-      >
-        <ElevationChart trackPoints={trackPoints} />
+      />
 
-      </div>
-    )}
-  </div>
-);
-
-
-
-
+      {trackPoints.length > 0 && (
+        <div
+          style={{
+            flex: 2.5,
+            minHeight: 0,
+            padding: "0px",
+            width: "100%",
+            borderRadius: "10px",
+            boxShadow: "4px 4px 10px rgba(0,0,0,0.35)"
+          }}
+        >
+          <ElevationChart trackPoints={trackPoints} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Map;

@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { useState } from "react";
+import { createRoot } from "react-dom/client";
 import App from "./App";
+import MainPage from "./MainPage";
 import * as Sentry from "@sentry/react";
-import "./styles/app.css";
 
 
 Sentry.init({
@@ -12,5 +12,17 @@ Sentry.init({
 });
 
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const Root = () => {
+  const [gpxFile, setGpxFile] = useState(null);
+
+  
+  if (gpxFile) {
+    return <App initialFile={gpxFile} />;
+  }
+
+
+  
+  return <MainPage onFileSelected={setGpxFile} />;
+};
+
+createRoot(document.getElementById("root")).render(<Root />);

@@ -10,7 +10,11 @@ import {
   Filler
 } from "chart.js";
 
+
+
+
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, Tooltip, Filler);
+Chart.defaults.color = "#fff";
 
 const ElevationChart = ({ trackPoints }) => {
   const canvasRef = useRef(null);
@@ -53,16 +57,16 @@ const ElevationChart = ({ trackPoints }) => {
               type: "linear",
               min: 0,
               max: maxDistanceM,
-              title: { display: true, text: "Distance", font: { family: "Montserrat", size: 14 } },
+              title: { display: true, text: "Distance", font: { family: "Raleway", size: 14 } },
               ticks: {
-                font: { family: "Montserrat", size: 12 },
+                font: { family: "Raleway", size: 12 },
                 stepSize: maxDistanceM / 20,
                 callback: v => `${Math.round(v/25)*25} m`
               }
             },
             y: {
-              title: { display: true, text: "Elevation", font: { family: "Montserrat", size: 14 } },
-              ticks: { font: { family: "Montserrat", size: 12 }, stepSize: 50, callback: v => `${Math.round(v/25)*25} m` }
+              title: { display: true, text: "Elevation", font: { family: "Raleway", size: 14 } },
+              ticks: { font: { family: "Raleway", size: 12 }, stepSize: 50, callback: v => `${Math.round(v/25)*25} m` }
             }
           },
           plugins: {
@@ -106,13 +110,11 @@ const ElevationChart = ({ trackPoints }) => {
 
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
-      <div style={{ flex: 1, minHeight: 0 }}>
-        <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0, background: "#252B37", borderRadius: "10px",}}>
+      <div style={{ flex: 1, minHeight: 0, borderRadius: "10px", padding: "10px" }}>
+        <canvas ref={canvasRef} style={{ width: "100%", height: "100%"}} />
       </div>
-
-      
-      </div>
+    </div>
     
   );
 };

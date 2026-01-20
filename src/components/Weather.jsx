@@ -57,12 +57,12 @@ const Weather = ({ lat, lon, date, onForecastChange }) => {
   }, [lat, lon, date, onForecastChange]);
 
   return (
-    <div style={{ padding: "0px 15px", background: "#f5f5f5"}}>
+    <div style={{ padding: "0px 15px", background: "#252B37", color: "#fff", borderRadius: "10px"}}>
       <h3>Weather</h3>
       <p>{summary || "Loading…"}</p>
-      <ul style={{lineHeight: "120%"}}>
+      <ul style={{}}>
         {forecast.map((f, i) => (
-          <li key={i} style={{fontSize: "16px"}}>
+          <li key={i} style={{fontSize: "16px", fontFamily: "Raleway"}}>
             {`${f.time} — Temp: ${f.temp}°C, Weather: ${f.weather}`}
           </li>
         ))}
