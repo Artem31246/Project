@@ -1,14 +1,11 @@
-import React, { useState } from "react";
 import { useEffect } from "react";
 import "./styles/main.css"
 
 const MainPage = ({ onFileSelected }) => {
-  const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
     const updatedFile = e.target.files[0];
     if (updatedFile) {
-      setFile(updatedFile);
       onFileSelected(updatedFile);
     }
   };
