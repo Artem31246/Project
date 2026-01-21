@@ -21,7 +21,6 @@ const MainPage = ({ onFileSelected }) => {
 
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   document.querySelectorAll(".reveal-nav").forEach(el => observer.observe(el));
-
   return () => observer.disconnect();
 }, []);
 
@@ -57,12 +56,15 @@ const MainPage = ({ onFileSelected }) => {
           <h1 className="main-title">GPX Viewer</h1>
           <h3 className="main-subtitle">The solution to perfect marathons</h3>
         </div>
-
-        <div className="main-btn reveal">
-          <div className="main-btn-text">
-            <a href="#about" className="a-link">Learn more</a>
+      <a href="#about" className="a-link">
+        <div className="btn-wrapper reveal">
+          <div className="main-btn">
+            <div className="main-btn-text">
+              Learn more
+            </div>
           </div>
         </div>
+      </a>
       </section>
 
       <section className="section about-section" id="about">
@@ -71,11 +73,11 @@ const MainPage = ({ onFileSelected }) => {
           <h3 className="main-subtitle about-subtitle">GPX Viewer is an open-source application created to analyze GPX Tracks providing information like: </h3>
           <br />
           <ul>
-            <li className="about-list-item">Viewing the track on a map</li>
-            <li className="about-list-item">Hourly weather forecast</li>
-            <li className="about-list-item">Track length</li>
-            <li className="about-list-item">Chart that displays elevation change</li>
-            <li className="about-list-item">Trekking poles recommendation</li>
+            <li className="about-list-item reveal">Viewing the track on a map</li>
+            <li className="about-list-item reveal">Hourly weather forecast</li>
+            <li className="about-list-item reveal">Track length</li>
+            <li className="about-list-item reveal">Chart that displays elevation change</li>
+            <li className="about-list-item reveal">Trekking poles recommendation</li>
           </ul>
         </div>
       </section>
@@ -83,21 +85,25 @@ const MainPage = ({ onFileSelected }) => {
       <section className="section start-section" id="getstarted">
 
         <h1 className="main-title reveal">Upload a file to get Started</h1>
-        <div className="upload-input reveal">
-            <img
-              src="/icons/upload.svg"
-              height="50"
-              width="50"
-              alt="Upload icon"
+        <label htmlFor="files">
+          <div className="input-wrapper reveal">
+            <div className="upload-input">
+                <img
+                  src="/icons/upload.svg"
+                  height="50"
+                  width="50"
+                  alt="Upload icon"
+                />
+                <input
+              id="files"
+              type="file"
+              accept=".gpx"
+              onChange={handleFileChange}
             />
-            <input
-          id="files"
-          type="file"
-          accept=".gpx"
-          onChange={handleFileChange}
-        />
-            <label htmlFor="files" style={{cursor: "pointer"}}>Upload a file</label>
-        </div>
+                <label htmlFor="files" style={{cursor: "pointer"}}>Upload a file</label>
+            </div>
+          </div>
+        </label>
       </section>
       
 
