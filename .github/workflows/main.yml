@@ -21,6 +21,8 @@ jobs:
 
       - name: Build 🔨
         run: npm run build
+        env:
+          REACT_APP_SENTRY_DSN: ${{ vars.REACT_APP_SENTRY_DSN }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

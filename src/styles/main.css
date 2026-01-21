@@ -326,7 +326,6 @@ ul li {
   opacity: 1;
   transform: translateY(0) translateX(-50%);
 }
-
 /* Adaptive layout 1280*/
 @media (max-width: 1280px) {
 
@@ -502,3 +501,5 @@ ul li {
     padding: 15px 30px;
   }
 }  
+=======
+>>>>>>> bab0b2b6530535b30ab27defbd1de606e43f3593
