@@ -44,12 +44,14 @@ const Map = ({ gpxFile, defaultGpxUrl, onTrackLoad }) => {
       lastGpxIdRef.current = gpxId;
 
       let gpxText;
+
       if (fileOrUrl instanceof File) {
         gpxText = await fileOrUrl.text();
       } else {
         const res = await fetch(fileOrUrl);
         gpxText = await res.text();
       }
+      
 
       const parser = new DOMParser();
       const xml = parser.parseFromString(gpxText, "application/xml");

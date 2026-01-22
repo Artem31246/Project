@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./styles/main.css"
+import MobileMenu from "./MobileMenu";
 
 const MainPage = ({ onFileSelected }) => {
 
@@ -34,20 +35,20 @@ const MainPage = ({ onFileSelected }) => {
         </div>
 
         <div className="navbar-links">
-          <div class="links-about">
-            <div class="links-about-text nav-animation">
-              <a href="#about" class="a-link">About Us</a>
+          <div className="links-about link-hide">
+            <div className="links-about-text nav-animation">
+              <a href="#about" className="a-link">About Us</a>
             </div>
-            <div class="links-about-text-line"></div>
+            <div className="links-about-text-line"></div>
           </div>
 
-          <div class="links-get-started">
-            <div class="links-get-started-text nav-animation">
-              <a href="#getstarted" class="a-link">Get Started</a>
+          <div className="links-get-started link-hide">
+            <div className="links-get-started-text nav-animation">
+              <a href="#getstarted" className="a-link">Get Started</a>
             </div>
-            <div class="links-get-started-text-line"></div>
+            <div className="links-get-started-text-line"></div>
           </div>
-
+        <MobileMenu />
         </div>
         
       </div>
@@ -83,8 +84,9 @@ const MainPage = ({ onFileSelected }) => {
       </section>
 
       <section className="section start-section" id="getstarted">
-
-        <h1 className="main-title reveal">Upload a file to get Started</h1>
+        <div className="wrapper">
+          <h1 className="main-title reveal">Upload a file to get Started</h1>
+        </div>
         <label htmlFor="files">
           <div className="input-wrapper reveal">
             <div className="upload-input">

@@ -35,6 +35,7 @@ const App = ({ initialFile }) => {
 
   return (
     <div className="app-container">
+      <button onClick={() => { throw new Error("Test"); }}>Test Error</button>
       <div className="map-section">
         <Map
           gpxFile={gpxFile}
@@ -42,7 +43,6 @@ const App = ({ initialFile }) => {
           onTrackLoad={handleGpxLoad}
         />
       </div>
-
       <div className="info-section">
         <div className="inputs">
           <div className="input-file">
