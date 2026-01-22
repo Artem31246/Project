@@ -23,6 +23,10 @@ html, body, #root {
   box-sizing: border-box;
 }
 
+.wrapper {
+  width: 80%;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -326,6 +330,32 @@ ul li {
   opacity: 1;
   transform: translateY(0) translateX(-50%);
 }
+
+.mobile-menu-btn {
+  font-size: 36px;
+  cursor: pointer;
+  color: white;
+  display: none;
+}
+
+.menu-item {
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.ant-dropdown-menu {
+  background: rgba(81, 95, 123, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 16px !important;
+  box-shadow: inset -4px -4px 15px 0px rgba(0, 0, 0, 0.35),
+    4px 4px 15px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+.ant-dropdown-menu-item a {
+  color: white !important;
+  font-family: "Raleway", sans-serif !important;
+}
+
 /* Adaptive layout 1280*/
 @media (max-width: 1280px) {
 
@@ -445,6 +475,14 @@ ul li {
   .navbar-links {
     font-size: 24px;
   }
+
+  .link-hide {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
 }
 
 /* Adaptive layout 768*/
@@ -452,7 +490,7 @@ ul li {
 @media (max-width: 768px) {
 
   .main-title {
-    font-size: 64px;
+    font-size: 60px;
   }
 
   .main-subtitle {
@@ -468,12 +506,6 @@ ul li {
     font-size: 32px;
   }
 
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 20px 40px;
-    gap: 20px;
-  }
 
   .navbar-title {
     font-size: 32px;
@@ -501,3 +533,55 @@ ul li {
     padding: 15px 30px;
   }
 }  
+
+/* Adaptive layout 480*/
+@media (max-width: 480px) {
+
+  .main-title {
+    font-size: 48px;
+  }
+
+  .main-subtitle {
+    font-size: 24px;
+  }
+
+  .main-btn {
+    width: 240px;
+    height: 60px;
+  }
+
+  .main-btn-text {
+    font-size: 24px;
+  }
+
+  .navbar {
+    padding: 0px 40px;
+    height: 80px;
+  }
+
+  .navbar-title {
+    font-size: 24px;
+  }
+
+  .navbar-links {
+    gap: 15px;
+  }
+
+  .links-about-text,
+  .links-get-started-text {
+    font-size: 18px;
+  }
+
+  .section ul li {
+    font-size: 24px;
+  }
+
+  .about-subtitle {
+    font-size: 24px;
+  }
+
+  .upload-input {
+    font-size: 24px;
+    padding: 12px 24px;
+  }
+}
