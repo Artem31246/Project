@@ -1,11 +1,21 @@
 html, body, #root {
-  height: 100%;
   margin: 0;
   padding: 0; 
-  font-family: "Montserrat", sans-serif;
-  box-sizing: border-box;
-  background: #1C2028;
+  min-height: 100vh;
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;  
+  box-sizing: border-box;
+  background: 
+    radial-gradient(
+      closest-side,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    linear-gradient(180deg, rgba(37, 43, 60, 1) 0%, rgba(81, 95, 123, 1) 100%);
+  background-attachment: fixed;
 }
 
 *, *::before, *::after {
@@ -15,22 +25,15 @@ html, body, #root {
 .app-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   width: 100%;
   gap: 10px;
   padding: 10px;
+  min-height: 100vh;
 }
 
 
 *, *::before, *::after {
   box-sizing: border-box;
-}
-
-.app-container {
-  display: flex;
-  max-height: 100vh;
-  width: 100%;
-  gap: 10px;
 }
 
 
@@ -162,3 +165,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(95%);
 }
 
+/* Adaptive layout 1280px */
+@media (max-width: 1280px) {
+
+  .app-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .map-section {
+    flex: none;
+    height: 80vh;
+  }
+
+  .info-section, .trekking-section, .weather-section {
+    flex: none;
+    height: auto;
+  }
+
+  .inputs {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+}

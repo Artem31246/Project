@@ -57,7 +57,7 @@ const TrekkingPoles = ({ trackPoints, forecastDesc }) => {
   if (!trackPoints || trackPoints.length === 0) return null;
 
   return (
-    <div style={{ padding: "0px 15px", background: "#252B37", display: "flex", flexDirection: "row",  justifyContent: "space-between",color: "#ffffff"}}>
+    <div style={{ padding: "0px 15px", background: "#252B37", display: "flex", justifyContent: "space-between",color: "#ffffff"}}>
       <div className="poles">
         <h3 className="poles-header">Trekking Poles</h3>
         <p className="poles-subheader" style={{fontFamily: "Raleway"}}>Reccomendation - {score}</p>
