@@ -70,7 +70,7 @@ const MainPage = ({ onFileSelected }) => {
 
       <section className="section about-section" id="about">
         <h1 className="main-title reveal">About Us</h1>
-        <div className="subtitle-container reveal" style={{width: "80%"}}>
+        <div className="subtitle-container reveal" style={{width: "80%", margin: "0 auto"}}>
           <h3 className="main-subtitle about-subtitle">GPX Viewer is an open-source application created to analyze GPX Tracks providing information like: </h3>
           <br />
           <ul>
@@ -84,7 +84,7 @@ const MainPage = ({ onFileSelected }) => {
       </section>
 
       <section className="section start-section" id="getstarted">
-        <div className="wrapper">
+        <div className="wrapper" style={{width: "80%", margin: "0 auto"}}>
           <h1 className="main-title reveal">Upload a file to get Started</h1>
         </div>
         <label htmlFor="files">
