@@ -595,3 +595,16 @@ ul li {
     padding: 12px 24px;
   }
 }
+
+@media(max-height: 720px) {
+  .section {
+    min-height: 150vh;
+  }
+}
+
+
+@media(max-height: 480px) {
+  .section {
+    min-height: 175vh;
+  }
+}
